@@ -81,17 +81,30 @@ Si el proyecto involucra un stack específico, leé además el archivo de tornil
 #### PASO 2 — MAPEO SISTEMÁTICO
 Para cada decisión que surgió en las preguntas de descubrimiento, revisá TODOS los tornillos UNO POR UNO y preguntate explícitamente por cada uno: "¿Este tornillo aplica a este proyecto?".
 
-No alcanza con recordar los tornillos "más obvios". Recorré la lista completa. Las decisiones que SIEMPRE hay que mapear, con los tornillos a revisar para cada una:
-- ¿Hay usuarios? → revisar U-01 a U-07
-- ¿Hay base de datos? → revisar U-08, U-09, U-10, U-11, U-12
-- ¿Hay validaciones? → revisar U-13, U-14, U-15
-- ¿Hay listas de datos? → revisar U-16
-- ¿Hay configuración o secrets? → revisar U-17, U-18, U-19, U-20
-- ¿Hay pagos o integraciones? → revisar U-21, U-22, U-23, U-24
-- ¿Hay tests? → revisar U-25, U-26, U-27, U-28
-- ¿Hay IA conversacional? → revisar PY-16 a PY-20
+No alcanza con recordar los tornillos "más obvios". Recorré la lista completa de cada archivo. Para cada decisión, revisá estos tornillos reales del ADN (numeración verificada contra los archivos):
 
-IMPORTANTE sobre los códigos: los IDs de arriba son ORIENTATIVOS por categoría. Los archivos de ADN pueden usar otra numeración (por ejemplo #1..#60 para el stack TypeScript, #1..#70 para Python, o U-01..U-38 en la ferretería maestra). Mapeá SIEMPRE contra los tornillos que REALMENTE existen en los archivos leídos en el PASO 1, no contra estos códigos de memoria. Si un rango no existe, buscá los tornillos equivalentes por tema (usuarios, DB, validación, etc.).
+Stack TypeScript — `szoluciones_tornillos_universales.md` / `szoluciones_tornillos_typescript.md` (tornillos #1–#60):
+- ¿Hay usuarios / login / permisos? → #5, #6, #7, #8, #27, #32, #44, #48
+- ¿Hay datos por cuenta / multi-tenant? → #9, #10, #11, #14, #29 (y #12, #21, #40 como RLS defensiva)
+- ¿Hay base de datos? → #18, #19, #20, #22, #31, #45
+- ¿Hay validaciones? → #15, #25, #30, #43, #50
+- ¿Hay listas / catálogos / export? → #16, #17, #57, #58, #59
+- ¿Hay configuración o secrets? → #33, #34, #35, #36, #37, #52
+- ¿Hay pagos o integraciones? → #26, #53, #54, #55, #56, #60
+- ¿Hay tests? → #38, #39, #40, #41
+
+Stack Python — `szoluciones_tornillos_python.md` (tornillos #1–#70, organizados en 10 áreas):
+- ¿Hay usuarios / auth? → #5 a #13 (área 2)
+- ¿Hay flujo de datos / validaciones? → #14 a #20 (área 3)
+- ¿Hay base de datos / dinero? → #21 a #28 (área 4; #22 dinero con Decimal, #26 encriptación)
+- ¿Hay errores / resiliencia? → #29 a #34 (área 5; #32 proveedor externo caído)
+- ¿Hay configuración o secrets? → #44 a #50 (área 7)
+- ¿Hay tests? → #51 a #58 (área 8)
+- ¿Hay un agente / acciones / IA que ejecuta? → #62 (registry de acciones matcher/prepare/execute), #68 (guardrails por nivel de riesgo), #72 (proveedores intercambiables ABC+Strategy), #18 (lock pesimista en efectos financieros)
+
+Síntesis universal — `szoluciones_ferreteria_maestra.md` (tornillos U-01–U-38): principios transversales (ej. U-01 tenant del token, U-04 fail-closed, U-16 transacción como guardián, U-36 route flaca/service gordo). Leela para no perderte ningún principio que los archivos de stack den por sabido.
+
+IMPORTANTE: estos números reflejan el ADN al momento de escribir el contrato. Si el ADN se actualiza, NO confíes en los rangos de memoria: mapeá contra los tornillos que REALMENTE existan en los archivos leídos en el PASO 1, buscando el equivalente por tema (usuarios, DB, validación, pagos, etc.).
 
 #### PASO 3 — CRITERIO DE INCLUSIÓN
 Un tornillo ENTRA en la sección "TORNILLOS QUE APLICAN" si:
