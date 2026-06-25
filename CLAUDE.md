@@ -70,6 +70,11 @@ Se activa recién cuando la síntesis está completa y el contexto es suficiente
 Reglas obligatorias:
 - Recién acá se pueden proponer arquitectura, entregables, tareas y alcance.
 - Recién acá se pueden definir tecnologías y decisiones de implementación.
+- Antes de generar el prompt en ./output/, leer los archivos de ./ADN/ y mapear cada decisión del proyecto contra los tornillos existentes.
+- El prompt final en ./output/ debe incluir obligatoriamente:
+  1. Una sección "TORNILLOS QUE APLICAN" con la lista de tornillos relevantes de ADN y por qué aplica cada uno.
+  2. Una sección "PROTOTIPOS PENDIENTES" con los huecos que no cubre ningún tornillo, numerados PX-01, PX-02, etc.
+  3. Una instrucción explícita al agente de desarrollo para leer esos archivos de ADN antes de escribir código.
 - Generar los dos archivos en ./output/:
   - un plan de trabajo
   - un prompt listo para usar
