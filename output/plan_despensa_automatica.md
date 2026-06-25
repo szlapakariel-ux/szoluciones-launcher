@@ -73,3 +73,25 @@ Es una PWA (funciona en móvil y desktop).
 2. ¿Cómo se ingresa el plan de la nutricionista? (PDF, formulario manual, foto con OCR)
 3. ¿Cómo se estima el stock restante? (consumo promedio, check manual, descuento automático)
 4. ¿Modelo de negocio? (suscripción mensual, comisión por compra, freemium)
+
+---
+
+## Tornillos que aplican (del ADN)
+Mapeo hecho leyendo el ADN en profundidad. Los 12 son obligatorios para construir sin bugs, fugas ni deuda técnica. Detalle y justificación por tornillo en `prompt_despensa_automatica.md`.
+
+| Tornillo | Por qué aplica al proyecto |
+|---|---|
+| #9 org_id del JWT | Aislar dieta/integrantes/carritos por hogar |
+| #11 Fail-closed sin tenant | No filtrar planes nutricionales entre cuentas |
+| #18 Plantilla tabla multi-tenant | Soft-delete e historial uniforme en todas las tablas |
+| #15/#25 Validación safeParse | Plan de la nutri y config validados antes de la DB |
+| #34/#52 Credenciales cifradas AES-256-GCM | API/login del proveedor que usa el agente |
+| #26/#53 Webhook idempotente | Confirmación de compra y entrega sin duplicar |
+| #55 Billing gate 402 | Producto comercializable por suscripción |
+| #37 Feature flag default apagado | La compra automática gasta plata real |
+| #60 Job background con dedupe | El agente de compras corre como cron semanal |
+| #57 Paginación con envelope | Catálogo de productos e historial de carritos |
+| #23/#24 Errores atajados + envelope español | "Proveedor sin stock" → HTTP claro para la PWA |
+| #38/#39 Test integración + caso negativo | Cálculo de lista y flujo de compra con DB real |
+
+Total: **12 tornillos** (mínimo esperado por el PASO 4 del contrato: 8). ✅
